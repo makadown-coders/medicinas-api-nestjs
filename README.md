@@ -1,103 +1,79 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 📌 Medicinas API - NestJS 🚀
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## 📖 Descripción
+Esta API es una **prueba de concepto** desarrollada para **IMSS Bienestar**, enfocada en demostrar la viabilidad de un sistema basado en **NestJS** para la consulta de insumos.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+El objetivo es facilitar la **consulta estructurada** de medicamentos dentro del sistema, integrando buenas prácticas de desarrollo, arquitectura limpia y despliegue en la nube mediante herramientas como **Koyeb**.
 
-## Description
+Esta API permite obtener información detallada sobre insumos del grupo 1 (medicamentos) con un enfoque escalable y seguro, usando **TypeORM y SQLite** como base de datos.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 🌐 URL de la API
+🔗 **Base URL:** [https://creepy-valerie-imssb-7706b603.koyeb.app](https://creepy-valerie-imssb-7706b603.koyeb.app)
 
-## Project setup
+## 📌 Endpoints Disponibles
 
+### 🔍 Obtener todos los medicamentos
+**GET** `/medicamentos`
 ```bash
-$ npm install
+curl -X GET https://creepy-valerie-imssb-7706b603.koyeb.app/medicamentos
+```
+📌 **Descripción:** Retorna la lista completa de medicamentos almacenados en la base de datos.
+
+---
+### 🔍 Buscar medicamento por ID
+**GET** `/medicamentos/{id}`
+```bash
+curl -X GET https://creepy-valerie-imssb-7706b603.koyeb.app/medicamentos/1
+```
+📌 **Descripción:** Retorna la información detallada de un medicamento específico según su **ID**.
+
+---
+### 🔍 Buscar medicamento por nombre genérico
+**GET** `/medicamentos/nombre/{nombreGenerico}`
+```bash
+curl -X GET https://creepy-valerie-imssb-7706b603.koyeb.app/medicamentos/nombre/ibuprofeno
+```
+📌 **Descripción:** Retorna los medicamentos cuyo **nombre genérico** coincide con el criterio de búsqueda.
+
+## 🚀 Tecnologías utilizadas
+- **NestJS** - Framework de Node.js para aplicaciones escalables
+- **TypeORM** - ORM para la gestión de la base de datos
+- **SQLite** - Base de datos ligera embebida
+- **Koyeb** - Plataforma de despliegue en la nube
+- **Docker** - Contenerización del servicio
+- **TypeScript** - Tipado estático para mayor seguridad
+
+## 🎯 Objetivo de la prueba de concepto
+Esta prueba busca demostrar que es posible implementar un sistema **moderno, escalable y eficiente** para la **gestión de medicamentos** en IMSS Bienestar. La API facilita consultas rápidas sobre medicamentos, mejorando la disponibilidad de información y la interoperabilidad con otros sistemas.
+
+📌 **Beneficios esperados:**
+- ✅ **Facilidad de consulta**: Acceso rápido a información de medicamentos.
+- ✅ **Escalabilidad**: Puede integrarse con sistemas hospitalarios más grandes.
+- ✅ **Despliegue ágil**: Infraestructura moderna en la nube con Koyeb.
+- ✅ **Código mantenible**: Uso de NestJS y buenas prácticas de desarrollo.
+
+## 🛠 Cómo ejecutar localmente
+1️⃣ Clonar el repositorio
+```bash
+git clone https://github.com/makadown-coders/medicinas-api-nestjs.git
+cd medicinas-api-nestjs
 ```
 
-## Compile and run the project
-
+2️⃣ Instalar dependencias
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm install
 ```
 
-## Run tests
-
+3️⃣ Ejecutar la API en desarrollo
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm run start:dev
 ```
 
-## Deployment
+4️⃣ Acceder a la API en `http://localhost:3000/medicamentos`
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+## 📬 Contacto
+Si tienes preguntas o sugerencias, ¡contáctame! 😊
 
 
-## Publicado en Koyeb
+## Artículo informativo en Koyeb
 https://www.koyeb.com/tutorials/continuous-deployment-of-a-nestjs-application-on-koyeb#deploy-the-nest-app-on-koyeb
