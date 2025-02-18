@@ -3,16 +3,24 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Medicamento } from './medicamento.entity';
+import { PaginatedResponseDto } from './paginated-response.dto';
 
 @Injectable()
 export class MedicamentoService {
+  private baseUrl: string = process.env.BASE_URL || 'http://localhost:3000';
+
   constructor(
     @InjectRepository(Medicamento)
     private medicamentoRepository: Repository<Medicamento>,
   ) {}
 
-  async findAll(): Promise<Medicamento[]> {
-    return this.medicamentoRepository.find();
+  async findAll(offset = 0, limit = 20): Promise<PaginatedResponseDto<Medicamento>> {
+    const [results, count] = await this.medicamentoRepository.findAndCount({
+      skip: offset,
+      take: limit,
+    });
+
+    return new PaginatedResponseDto<Medicamento>(count, results, this.baseUrl, offset, limit);
   }
 
   async findByNombre(nombre: string): Promise<Medicamento[]> {
