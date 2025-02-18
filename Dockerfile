@@ -15,6 +15,9 @@ RUN npm ci
 # Copiar el resto del código de la aplicación
 COPY . .
 
+# Crear la carpeta dist/data antes de copiar el archivo Excel
+RUN mkdir -p dist/data && cp src/data/Cat1-Medicamentos.xlsx dist/data/
+
 # Construir la aplicación
 RUN npm run build
 
@@ -28,6 +31,10 @@ WORKDIR /app
 COPY --from=build /app/package.json /app/package-lock.json ./
 COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/dist ./dist
+
+# Asegurar que la carpeta de datos exista en producción
+RUN mkdir -p /app/dist/data
+COPY --from=build /app/dist/data/Cat1-Medicamentos.xlsx /app/dist/data/
 
 # Exponer el puerto en el que corre NestJS
 EXPOSE 3000
