@@ -12,10 +12,24 @@ async function bootstrap() {
     forbidNonWhitelisted: true, // Lanza un error si hay propiedades no permitidas
     transform: true, // Transforma automáticamente los datos entrantes a instancias de DTO
   }));
-  
- // Ejecutar Seeder
- const medicamentoSeeder = app.get(MedicamentoSeeder);
- await medicamentoSeeder.seedFromExcel();
+
+  // 🔹 Obtener el origen de CORS desde la variable de entorno
+  const corsOrigin = process.env.CORS_ORIGIN || '*';
+
+  // 🔹 Configurar CORS
+  app.enableCors({
+    origin: corsOrigin,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: 'Content-Type, Authorization'
+  });
+
+  console.log(`🚀 CORS habilitado para ${ corsOrigin }`);
+
+  // Ejecutar Seeder
+  const medicamentoSeeder = app.get(MedicamentoSeeder);
+  await medicamentoSeeder.seedFromExcel();
   await app.listen(process.env.PORT ?? 3000);
+
+  console.log(`🚀 Servidor iniciado en el puerto ${ process.env.PORT ?? 3000 }`);
 }
 bootstrap();

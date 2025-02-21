@@ -23,7 +23,6 @@ export class MedicamentoController {
 
   @Get(':id')
   async findById(@Param('id') id: number): Promise<Medicamento | null> {
-    console.log(id);
     return this.medicamentoService.findById(id);
   }
 }
